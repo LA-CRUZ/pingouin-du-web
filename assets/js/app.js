@@ -5,3 +5,5 @@ require('../css/app.css');
 require('../scss/main.scss');
 
 // any JS file you require
+const startGame = require("./404");
+window.startGame = startGame;
