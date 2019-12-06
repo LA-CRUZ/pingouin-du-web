@@ -1,17 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block header %}
-    <header>
-        <nav class="header-menu">
-            {% block menu %}{% endblock %}
-        </nav>
-    </header>
-{% endblock %}
-
 {% block content %}
     <main>
         {% block main_content %}{% endblock %}
+        
+        <div class="chat-popup" id="myForm">
+            <div class="form-container">
+                <h1>Nous sommes à votre disposition !</h1>
+                <div id="output"></div>
+
+                <div id="container">
+                    <input type="text" id="input" value="" placeholder="Une question ?">
+                </div>
+
+                <p>(Entrée pour valider)</p>
+            </div>
+        </div>
+
+        <a class="open-button"><i class="fas fa-comment-alt"></i></a>
     </main>
+    <script>
+        $(document).ready(function () {
+            
+            $('.chat-popup').hide();
+            $('.open-button').click(function (event) {
+                $('.chat-popup').toggle("slow");
+            });
+        });
+
+        var question = '<h2>Quelle est votre problème ?</h2>';				// first question
+
+        var output = document.getElementById('output');				// store id="output" in output variable
+        output.innerHTML = question;								// ouput first question
+
+        function bot() { 
+            var input = document.getElementById("input").value;
+            console.log(input);
+            
+            
+        }
+
+        function timedQuestion() {
+            output.innerHTML = question;
+        }
+
+        //push enter key (using jquery), to run bot function.
+        $(document).keypress(function(e) {
+            if (e.which == 13) {
+                bot();	// run bot function when enter key pressed
+                questionNum++;	// increase questionNum count by 1
+            }
+        });
+    </script>
 {% endblock %}
 
 {% block footer %}
