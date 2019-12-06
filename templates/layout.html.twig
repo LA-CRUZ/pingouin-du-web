@@ -36,8 +36,63 @@
         function bot() { 
             var input = document.getElementById("input").value;
             console.log(input);
-            
-            
+
+            keywords = ["velo", "petit_budget", "agenda", "loisirs", "rencontres", "trains", "abonnement", "bus", "besoin_aide", "handicap", "crous", "urgence_log", "recherche_log", "jobs", "impot", "aide_log", "apl", "sexualite"];
+        
+            if(input.includes("velo")) {
+                window.location = "{{ path("list", {keyword: "velo"}) }}";
+            }
+            if(input.includes("budget")) {
+                window.location = "{{ path("list", {keyword: "petit_budget"}) }}";
+            }
+            if(input.includes("agenda")) {
+                window.location = "{{ path("list", {keyword: "agenda"}) }}";
+            }
+            if(input.includes("loisirs")) {
+                window.location = "{{ path("list", {keyword: "loisirs"}) }}";
+            }
+            if(input.includes("rencontres")) {
+                window.location = "{{ path("list", {keyword: "rencontres"}) }}";
+            }   
+            if(input.includes("trains")) {
+                window.location = "{{ path("list", {keyword: "trains"}) }}";
+            }   
+            if(input.includes("abonnement")) {
+                window.location = "{{ path("list", {keyword: "abonnement"}) }}";
+            }
+            if(input.includes("bus")) {
+                window.location = "{{ path("list", {keyword: "bus"}) }}";
+            }
+            if(input.includes("besoin")) {
+                window.location = "{{ path("list", {keyword: "besoin_aide"}) }}";
+            }
+            if(input.includes("handicap")) {
+                window.location = "{{ path("list", {keyword: "handicap"}) }}";
+            }
+            if(input.includes("crous")) {
+                window.location = "{{ path("list", {keyword: "crous"}) }}";
+            }
+            if(input.includes("urgence")) {
+                window.location = "{{ path("list", {keyword: "urgence_log"}) }}";
+            }
+            if(input.includes("recherche")) {
+                window.location = "{{ path("list", {keyword: "recherche_log"}) }}";
+            }
+            if(input.includes("jobs")) {
+                window.location = "{{ path("list", {keyword: "jobs"}) }}";
+            }
+            if(input.includes("impot")) {
+                window.location = "{{ path("list", {keyword: "impot"}) }}";
+            }
+            if(input.includes("aide")) {
+                window.location = "{{ path("list", {keyword: "besoin_aide"}) }}";
+            }
+            if(input.includes("apl")) {
+                window.location = "{{ path("list", {keyword: "apl"}) }}";
+            }
+            if(input.includes("sexualite")) {
+                window.location = "{{ path("list", {keyword: "sexualite"}) }}";
+            }
         }
 
         function timedQuestion() {
