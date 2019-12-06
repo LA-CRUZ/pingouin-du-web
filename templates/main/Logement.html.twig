@@ -1,0 +1,90 @@
+{% include 'layout.html.twig' %}
+{% block main_content %}
+    <h1>Logement
+        {% if app.request.cookies.get('secret_state') == 1 %}
+            <a href="{{ path("secret") }}" class="key"><i class="fas fa-key"></i></a>
+        {% endif %}
+    </h1>
+    <h2>Comment chercher votre logement ?</h2>
+
+    <p> Vous venez d'arriver à Lyon ou vous souhaitez simplement déménager ?
+        Nous allons vous aider à trouver votre logement. Avec ces quelques
+        conseils, votre recherche sera simplifiée. </p>
+
+    <h2> 1. Ciblez une zone de recherche précise -> </h2>
+
+    <p>    Nous allons voir quel quartier correspond le mieux à vos critères.
+        Ciblez quels critères sont importants pour vous parmi la liste suivante :</p>
+    <p>
+        <ul>
+            <li>- proximité avec votre école/ faculté,</li>
+            <li>- proximité des commerces,</li>
+            <li>- proximité avec les transports en commun,</li>
+            <li>- proximité avec les loisirs (salle de sport, cinéma, parcs)</li>
+        </ul>
+    </p>
+    <h2> 2. Décryptez les annonces des logements en location</h2>
+
+    <p>   Pour commencer, vérifiez que le logement se situe véritablement dans le
+        quartier que vous ciblez, et si l’annonce précise quelles sont les
+        commodités à proximité. La mention « en très bon état », « cuisine équipée »
+        ou encore « cuisine aménagée » vous donne des indications sur l’état du bien
+        et ses équipements. L’annonce doit mentionner la surface exacte du logement.
+        Les photos permettent également d’avoir un aperçu du bien, n’hésitez pas à
+        les regarder en détails afin de vous faire une idée de son état.</p>
+
+    <h2> 3. Visitez efficacement pour ne pas vous tromper</h2>
+
+    <p>    Au moment de visiter les biens, n’oubliez pas d’ouvrir l’œil et de faire
+        attention aux moindres détails. La cuisine et les salles d’eau
+        bénéficient-elles d’un système de ventilation ? Détectez-vous des traces
+        de moisissure sur les murs ? Les portes sont-elles en bon état ? La cuisine
+        est-elle correctement équipée ? Le système électrique est-il aux normes ?
+        L’environnement du bien est-il calme ? Le logement est-il équipé de
+        détecteurs de fumée ?</p>
+
+    <h2> 4. Constituez votre dossier de location en béton !</h2>
+
+       <p> Vous avez enfin trouvé la location de vos rêves, et il va, à présent,
+        falloir constituer un dossier solide et complet afin de mettre toutes les
+        chances de votre côté. Tout d’abord, commencez par réunir les pièces les
+        plus fréquemment demandées : pièce justificative d’identité en cours de
+        validité, votre contrat de travail et vos trois derniers bulletins de salaire,
+        votre dernier avis d’imposition, et si vous étiez locataire d’un autre logement
+        précédemment, les trois dernières quittances de loyer. La plupart des propriétaires
+        demandent que le locataire aient recours à une personne qui se porte caution pour
+        lui. Cette personne, qui se porte caution, s’engage ainsi à couvrir le règlement des
+        loyers en cas de défaillance du locataire. Commencez donc d’ores et déjà à trouver
+        une ou plusieurs personnes susceptibles d’accepter de se porter caution pour vous.</p>
+    <script>
+        function createCookie(name,value,days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime()+(days*24*60*60*1000));
+                var expires = "; expires="+date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)===' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        function eraseCookie(name) {
+            createCookie(name,"",-1);
+        }
+        if(readCookie("secret_state") == 1) {
+            document.querySelector(".key").addEventListener('click',function (event) {
+                createCookie("secret_state","2");
+            })
+        }
+    </script>
+{% endblock %}
