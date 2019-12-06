@@ -2,21 +2,51 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\KeywordsRepository;
+use App\Repository\QuestionsRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * @Route("/{_locale}")
- */
 class MainController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function index()
     {
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/question/{id}", name="question") 
+     */
+    public function question(QuestionsRepository $repo, $id)
+    {
+        $data = $repo->find($id);
+
+        if(!$data) {
+            throw $this->createNotFoundException('La question n\'existe pas');
+        }
+
+        return $this->render('main/content.html.twig', [
+            'data' => $data,
+        ]);
+    }
+
+    /**
+     * @Route("/list/{keyword}", name="list")
+     */
+    public function list(KeywordsRepository $repo, $keyword)
+    {
+        $key = $repo->findOneBy([
+            'title' => $keyword
+        ]);
+
+        return $this->render('main/list.html.twig', [
+            'keyword' => $keyword,
+            'questions' => $key->getQuestions()
         ]);
     }
 }

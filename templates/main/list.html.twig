@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block main_content %}
+    <div class="content">
+        <div class="list">
+            <h1>{{ keyword }}</h1>
+            <hr class="title">
+            <ul>
+                {% for question in questions %}
+                    <li><a href="{{ path("question", { id: question.id}) }}">{{ question.text }} </a></li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
