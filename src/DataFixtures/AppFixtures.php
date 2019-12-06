@@ -14,11 +14,11 @@ class AppFixtures extends Fixture
         $data = [
             [
                 "title" => "J'aimerais apprendre à réparer mon vélo.",
-                "keyword" => ["velos", "petit_budget"]
+                "keyword" => ["velo", "petit_budget"]
             ],
             [
                 "title" => "J'aimerais déménager à vélo.",
-                "keyword" => ["velos", "rechercher_log"]
+                "keyword" => ["velo", "rechercher_log"]
             ],
             [
                 "title" => "J'aimerais vivre en colocation.",
@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
             ],
             [
                 "title" => "Je souhaite connaitre mes possibilités de transport",
-                "keyword" => ["velos", "abonnement", "bus", "trains"]
+                "keyword" => ["velo", "abonnement", "bus", "trains"]
             ],
             [
                 "title" => "Comment gerer ma déclaration d'impôt",
@@ -90,7 +90,7 @@ class AppFixtures extends Fixture
             ],
             [
                 "title" => "Je cherche des informations sur un abonnement de transport",
-                "keyword" => ["velos", "trains", "abonnement", "bus"]
+                "keyword" => ["velo", "trains", "abonnement", "bus"]
             ],
             [
                 "title" => "Je souhaite participer à des actions bénévoles",
