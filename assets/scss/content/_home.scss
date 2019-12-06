@@ -128,3 +128,11 @@ text {
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
+
+  .overlay-camembert {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
