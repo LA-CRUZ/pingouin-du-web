@@ -8,22 +8,8 @@
 {% endblock %} #}
 
 {% block main_content %}
-    <style>
-        canvas {
-            border: 1px solid #d3d3d3;
-            background-color: #f1f1f1;
-
-        }
-        #frame {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100vw;
-            height: 100vh;
-        }
-    </style>
-
     <div id="frame"></div>
+    
     <script>
         var myGamePiece;
         var myScore;
@@ -34,18 +20,40 @@
         function startGame() {  
             myGameArea.start();
             myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-            myGamePiece = new component(50, 50, "red", (myGameArea.canvas.width / 2), (myGameArea.canvas.height / 2));
+            myGamePiece = new component(50, 50, '{{ asset("build/images/character/2_side.png")}}', (myGameArea.canvas.width / 2), (myGameArea.canvas.height / 2), "image");
         }
   
         var myGameArea = {
             canvas : document.createElement("canvas"),
             start : function() {
+                wall = document.createElement("div");
+                wall.id = "wall";
+                document.querySelector("#frame").appendChild(wall);
+                door = document.createElement("div");
+                door.id = "door";
+                wall.appendChild(door);
                 this.context = this.canvas.getContext("2d");
                 this.canvas.width = 1160;
                 this.canvas.height = 740;
                 document.querySelector("#frame").appendChild(myGameArea.canvas);
                 this.frameNo = 0;
                 this.interval = setInterval(updateGameArea, 20);
+                deskImg = document.createElement("img");
+                deskImg.id = "deskImg";
+                deskImg.src = '{{ asset("build/images/environment/desk.png")}}';
+                document.querySelector("#frame").appendChild(deskImg);
+                char = document.createElement("div");
+                char.id = "charImg"
+                charImg = document.createElement("p");
+                charImg.id = "charE";
+                charImg.onmouseover = function() {
+                    animateScript();
+                };
+                charImg.onmouseout = function() {
+                    stopAnimate();
+                };
+                char.appendChild(charImg);
+                document.querySelector("#frame").appendChild(char);
             },
             clear : function() {
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -60,12 +68,16 @@
             if ((myGameArea.frameNo / n) % 1 == 0) { return true; }
             return false;
         }
-        
 
         function component(width, height, color, x, y, type) {
             this.type = type;
             this.bulletDirection = null;
             this.lastDirection = null;
+            if (type == "image") {
+                this.image = new Image();
+                this.id = "char";
+                this.image.src = color;
+            }
             this.width = width;
             this.height = height;
             this.x = x;
@@ -77,6 +89,11 @@
                     ctx.font = this.width + " " + this.height;
                     ctx.fillStyle = color;
                     ctx.fillText(this.text, this.x, this.y);
+                } else if (type == "image") {
+                    ctx.drawImage(this.image,
+                        this.x,
+                        this.y,
+                        this.width, this.height);
                 } else {
                     ctx.fillStyle = color;
                     ctx.fillRect(this.x, this.y, this.width, this.height);
