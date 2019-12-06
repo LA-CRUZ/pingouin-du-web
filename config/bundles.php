@@ -15,9 +15,6 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
-<<<<<<< HEAD
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
-=======
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
->>>>>>> f68c1c07901bb57b5ff4183bc3b56c1bdda31202
 ];
