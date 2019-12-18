@@ -1,0 +1,79 @@
+canvas {
+    border: 1px solid #d3d3d3;
+    border-top: 0;
+    background-repeat: repeat;
+    background: url('../../images/environment/carpet.png') 0 0;
+}
+
+#frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+#wall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //background-repeat: repeat-x;
+    width: 1160px;
+    height: 45px;
+    background-image: url('../../images/environment/wall.png');
+}
+
+#wallImg {
+    width: 100%;
+    height: auto;
+}
+
+#door {
+    width: 20px;
+    height: 45px;
+    background: url('../../images/environment/door.png') 0 0 !important;
+}
+
+#doorImg {
+    width: 100%;
+    height: auto;
+}
+
+#deskImg {
+    position : absolute;
+    top: 50%;
+    left: 45%;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+
+}
+
+#charN {
+    width: 38px;
+    height: 48px;
+    background: url('../../images/character/2_north.png') 0 0;
+    background-size: cover;
+}
+
+#charS {
+    width: 38px;
+    height: 48px;
+    background: url('../../images/character/2_south.png') 0 0;
+    background-size: cover;
+}
+
+#charE {
+    width: 38px;
+    height: 48px;
+    background: url('../../images/character/2_side.png') 0 0;
+    background-size: cover;
+}
+
+#charW {
+    width: 38px;
+    height: 48px;
+    background: url('../../images/character/2_side_left.png') 0 0;
+    background-size: cover;
+}

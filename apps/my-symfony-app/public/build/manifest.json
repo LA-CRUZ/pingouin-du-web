@@ -1,0 +1,21 @@
+{
+  "public/build/app.css": "/public/build/app.css",
+  "public/build/app.js": "/public/build/app.js",
+  "public/build/runtime.js": "/public/build/runtime.js",
+  "public/build/images/2_north.png": "/public/build/images/2_north.fff1c97e.png",
+  "public/build/images/2_side.png": "/public/build/images/2_side.b2baa6a5.png",
+  "public/build/images/2_side_left.png": "/public/build/images/2_side_left.054aa2da.png",
+  "public/build/images/2_south.png": "/public/build/images/2_south.9efeab7f.png",
+  "public/build/images/carpet.png": "/public/build/images/carpet.b55e9c00.png",
+  "public/build/images/character/2_north.png": "/public/build/images/character/2_north.fff1c97e.png",
+  "public/build/images/character/2_side.png": "/public/build/images/character/2_side.b2baa6a5.png",
+  "public/build/images/character/2_side_left.png": "/public/build/images/character/2_side_left.054aa2da.png",
+  "public/build/images/character/2_south.png": "/public/build/images/character/2_south.9efeab7f.png",
+  "public/build/images/character/ghost.png": "/public/build/images/character/ghost.7875034f.png",
+  "public/build/images/door.png": "/public/build/images/door.58b17be0.png",
+  "public/build/images/environment/carpet.png": "/public/build/images/environment/carpet.b55e9c00.png",
+  "public/build/images/environment/desk.png": "/public/build/images/environment/desk.28b24a92.png",
+  "public/build/images/environment/door.png": "/public/build/images/environment/door.58b17be0.png",
+  "public/build/images/environment/wall.png": "/public/build/images/environment/wall.600fbbe0.png",
+  "public/build/images/wall.png": "/public/build/images/wall.600fbbe0.png"
+}
