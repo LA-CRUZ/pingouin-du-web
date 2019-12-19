@@ -4,43 +4,84 @@
   tasks:
           - name: Install required system packages
             become: true
+            register: repo_code
             apt: name={{ item }} state=latest
             loop: [ 'apt-transport-https', 'lsb-release', 'python-pip', 'ca-certificates', 'curl', 'sudo', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+        
+          - name: Register code_changed variable
+            set_fact:
+              code_changed: repo_code.changed
 
           - name: Add php
             become: true
             get_url:
               url: "https://packages.sury.org/php/apt.gpg"
               dest: /etc/apt/trusted.gpg.d/php.gpg
+            when: code_changed
 
           - name: Add php(2)
             become: true
             shell: echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" >> /etc/apt/sources.list.d/php.list
+            when: code_changed
 
           - name: Upgrade package
             become: true
             apt:
               update_cache: yes      
               upgrade: yes   
+            when: code_changed
 
           - name: Install Php
             become: true
             apt: name={{ item }} update_cache=yes state=latest
             loop: [ 'php7.3-curl', 'php7.3-gd', 'php7.3-intl', 'php7.3-json', 'php7.3-mbstring', 'php7.3-xml', 'php7.3-zip', 'php7.3', 'composer', 'python-apt' ]
+            when: code_changed
 
           - name: Config Sudo
             template: src=templates/sudo.j2 dest=/etc/sudoers
+            when: code_changed
 
           - name: Composer install
             become: yes
             become_user: trr
-            command: sudo composer -d=/root/docker/rendu-healtheat/apps/my-symfony-app/ install
+            command: sudo composer -d=/root/docker/pingouin-du-web/apps/my-symfony-app/ install
+
+          - name: Yarn install
+            become: true
+            apt_key:
+              url: https://dl.yarnpkg.com/debian/pubkey.gpg
+              state: present
+
+          - name: Yarn install(2)
+            become: true
+            shell: echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+          - name: Upgrade package
+            become: true
+            apt:
+              update_cache: yes
+              upgrade: yes
+       
+          - name: Yarn install(3)
+            apt: name=yarn state=present
+
+          - name: Nodejs install
+            shell: curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -y nodejs
+
+          - name: Yarn install cmd
+            become: true
+            command: yarn install
+
+          - name: Yarn encore dev
+            become: true
+            command: yarn encore dev
 
           - name: ADD Docker GPG apt Key
             become: true
             apt_key:
               url: https://download.docker.com/linux/debian/gpg
               state: present
+            when: code_changed
 
           - name: Add Docker Repository for Debian 10
             become: true
@@ -61,11 +102,13 @@
           - name: Update apt and install docker-ce
             become: true
             apt: name=docker-ce state=latest
+            when: code_changed
 
           - name: Install Docker Module for Python
             become: true
             pip:
               name: docker
+            when: code_changed
 
           - name: Network
             become: true
@@ -75,7 +118,7 @@
           - name: MYSQL Container
             become: true
             docker_container:
-              name: mysql5
+              name: mysqli
               image: mysql:5
               networks:
                 - name: ndi
