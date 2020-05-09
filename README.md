@@ -1,3 +1,9 @@
+# Pinguin du Web
+
+Project created as part of the ["Nuit de l'info"](https://www.nuitdelinfo.com) 2019, were you must create a website in a short period of time following a theme
+
+2019 theme was : Make a tool that can be use by students to find all of the information and help they can need
+
 # Usefull command : 
 
 ## Few tools you need before installing anything
